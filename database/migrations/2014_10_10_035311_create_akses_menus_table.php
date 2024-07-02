@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('akses_menus', function (Blueprint $table) {
             $table->id('idAksesMenu');
-            $table->integer('idMenu');
+            $table->unsignedBigInteger('idMenu');
             $table->string('deskripsi');
             $table->string('label');
             $table->timestamps();
+
+            $table->foreign('idMenu')->references('idMenu')->on('menus');
         });
     }
 
