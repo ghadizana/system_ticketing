@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Menu extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'idMenu';
+
+    public function AksesMenu() {
+        return $this->hasMany(AksesMenu::class, 'idAksesMenu');
+    }
 }
