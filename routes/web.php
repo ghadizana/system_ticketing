@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AksesMenuController;
 use App\Http\Controllers\DataUserController;
 use App\Http\Controllers\GrupUserController;
 use App\Http\Controllers\LoginController;
@@ -44,3 +45,8 @@ Route::get('/grup-user-edit/{idGrupUser}', [GrupUserController::class, 'edit'])-
 Route::post('/grup-user', [GrupUserController::class, 'store'])->name('addGrupUser');
 Route::put('/grup-user-update/{idGrupUser}', [GrupUserController::class, 'update'])->name('updateGrupUser');
 Route::delete('/grup-user/{idGrupUser}', [GrupUserController::class, 'destroy'])->name('deleteGrupUser');
+
+// Akses Menu Route
+Route::get('/akses-menu', [AksesMenuController::class, 'index'])->name('aksesMenu');
+Route::post('/akses-menu', [AksesMenuController::class, 'store'])->name('addAksesMenu');
+Route::delete('/akses-menu/{idAksesMenu}', [AksesMenuController::class, 'destroy'])->name('deleteAksesMenu');
