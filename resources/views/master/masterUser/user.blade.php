@@ -138,7 +138,7 @@
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="{{ route('masterUser') }}" target="_blank" class="menu-link">
+                                <a href="{{ route('aksesMenu') }}" class="menu-link">
                                     <div data-i18n="CRM">Akses Menu</div>
                                 </a>
                             </li>
@@ -164,12 +164,12 @@
                         <!-- Layout Demo -->
                         <div class="layout-demo-info">
                             <div class="layout-demo-placeholder">
-                                
+
                                 {{-- Navbar Tambah Pengguna --}}
                                 <div class="container d-flex justify-content-between align-items-center">
                                     <h4 class="py-3 mb-0">Detail Pengguna</h4>
-                                    <a class="btn btn-primary" type="button"
-                                        href="{{ route('register') }}">Tambah Pengguna</a>
+                                    <a class="btn btn-primary" type="button" href="{{ route('register') }}">Tambah
+                                        Pengguna</a>
                                 </div>
                                 {{-- End Navbar Tambah Pengguna --}}
 
@@ -196,9 +196,10 @@
                                                     <td>{{ $user->idGrupUser }}</td>
                                                     <td>
                                                         @if ($user->status === 1)
-                                                        <span class="badge bg-label-primary me-1">Aktif</span>
+                                                            <span class="badge bg-label-primary me-1">Aktif</span>
                                                         @else
-                                                        <span class="badge bg-label-warning me-1">Tidak Aktif</span>
+                                                            <span class="badge bg-label-warning me-1">Tidak
+                                                                Aktif</span>
                                                         @endif
                                                     </td>
                                                     <td>
@@ -208,11 +209,15 @@
                                                                 data-bs-toggle="dropdown"><i
                                                                     class="bx bx-dots-vertical-rounded"></i></button>
                                                             <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="{{ route('detailUser', $user->userId) }}"><i
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('detailUser', $user->userId) }}"><i
                                                                         class="bx bx-user me-2"></i>Detail Akun</a>
-                                                                <a class="dropdown-item" href="{{ route('editUser', $user->userId) }}"><i
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('editUser', $user->userId) }}"><i
                                                                         class="bx bx-edit-alt me-2"></i>Edit</a>
-                                                                <form action="{{ route('deleteUser', $user->userId) }}" method="POST">
+                                                                <form
+                                                                    action="{{ route('deleteUser', $user->userId) }}"
+                                                                    method="POST">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="submit" class="dropdown-item"
