@@ -196,7 +196,9 @@
                                                                 data-bs-toggle="dropdown"><i
                                                                     class="bx bx-dots-vertical-rounded"></i></button>
                                                             <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="{{ route('editGrupUser', $grupUser->idGrupUser) }}"><i class="bx bx-edit-alt me-2"></i>Edit</a>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('editGrupUser', $grupUser->idGrupUser) }}"><i
+                                                                        class="bx bx-edit-alt me-2"></i>Edit</a>
                                                                 <form
                                                                     action="{{ route('deleteGrupUser', $grupUser->idGrupUser) }}"
                                                                     method="POST">
@@ -213,19 +215,6 @@
                                                 </tr>
                                             @endforeach
                                         </tbody>
-
-                                        <script>
-                                            $(document).ready(function() {
-                                                $('#editGrupUser').on('show.bs.modal', function(event) {
-                                                    var button = $(event.relatedTarget);
-                                                    var idGrupUser = button.data('id');
-                                                    var grupUser = button.data('grup-user');
-                                                    var modal = $(this);
-                                                    modal.find('.modal-body #idGrupUser').val(idGrupUser);
-                                                    modal.find('.modal-body #grupUser').val(grupUser);
-                                                });
-                                            });
-                                        </script>
                                     </table>
                                 </div>
                             </div>
@@ -238,43 +227,6 @@
                     <div class="content-backdrop fade"></div>
                 </div>
                 <!-- Content wrapper -->
-                <div class="modal fade" id="editGrupUser" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Edit Grup User</h5>
-                            </div>
-                            <hr>
-                            <div class="modal-body">
-                                <form id="formEditGrupUser" class="mb-3"
-                                    action="{{ route('editGrupUser', $grupUser->idGrupUser) }}" method="POST"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    @method('PUT')
-                                    <div class="row g-2">
-                                        <div class="col mb-0">
-                                            <label for="idGrupUser" class="form-label">Id Grup User</label>
-                                            <input type="number" id="idGrupUser" class="form-control"
-                                                name="idGrupUser" value="{{ $grupUser->idGrupUser }}" readonly>
-                                        </div>
-                                        <div class="col mb-0">
-                                            <label for="grupUser" class="form-label">Nama Grup User</label>
-                                            <input type="text" id="grupUser" class="form-control"
-                                                name="grupUser" value="{{ $grupUser->grupUser }}">
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Simpan perubahan</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
             <!-- / Layout page -->
         </div>
