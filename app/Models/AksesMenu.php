@@ -9,6 +9,15 @@ class AksesMenu extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'idAksesMenu';
+
+    protected $fillable = [
+        'idAksesMenu',
+        'idMenu',
+        'deskripsi',
+        'label',
+    ];
+
     public function Menu() {
         return $this->belongsTo(Menu::class, 'idMenu', 'idMenu');
     }
