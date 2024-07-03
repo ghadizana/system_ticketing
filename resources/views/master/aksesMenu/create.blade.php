@@ -1,7 +1,7 @@
 <div class="modal fade" id="addAksesMenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form id="formAddGrupUser" class="mb-3" action="{{ route('addAksesMenu') }}" method="POST">
+            <form id="formAddAksesMenu" class="mb-3" action="{{ route('addAksesMenu') }}" method="POST">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Akses Menu</h5>
@@ -22,8 +22,8 @@
                     </div>
                     <div class="row g-2">
                         <div class="col mb-0">
-                            <label for="idAksesMenu" class="form-label">Id Akses Menu</label>
-                            <select name="idAksesMenu" id="idAksesMenu" class="form-control" required>
+                            <label for="idMenu" class="form-label">Nama Menu</label>
+                            <select name="idMenu" id="idMeny" class="form-control" required>
                                 @foreach ($menu as $item)
                                     <option value="{{ $item->idMenu }}"
                                         {{ old('idMenu') == $item->idMenu ? 'selected' : '' }}>

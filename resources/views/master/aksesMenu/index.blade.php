@@ -49,7 +49,7 @@
                                                                 data-bs-toggle="dropdown"><i
                                                                     class="bx bx-dots-vertical-rounded"></i></button>
                                                             <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#"><i
+                                                                <a class="dropdown-item" href="{{ route('editAksesMenu', $akses->idAksesMenu) }}"><i
                                                                         class="bx bx-edit-alt me-2"></i>Edit</a>
                                                                 <form
                                                                     action="{{ route('deleteAksesMenu', $akses->idAksesMenu) }}"
