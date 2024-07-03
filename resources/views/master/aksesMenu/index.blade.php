@@ -15,14 +15,14 @@
                         <!-- Layout Demo -->
                         <div class="layout-demo-info">
                             <div class="layout-demo-placeholder">
-                                {{-- Navbar Tambah Grup User --}}
+                                {{-- Navbar Tambah Menu --}}
                                 <div class="container d-flex justify-content-between align-items-center">
                                     @include('master.aksesMenu.create')
                                     <h4 class="py-3 mb-0">Detail Akses Menu</h4>
                                     <a class="btn btn-primary" type="button" data-bs-toggle="modal"
                                         data-bs-target="#addAksesMenu" href="#">Tambah Akses Menu</a>
                                 </div>
-                                {{-- End Navbar Tambah Grup User --}}
+                                {{-- End Navbar Tambah Menu --}}
 
                                 <div class="table-responsive">
                                     <table class="table">
