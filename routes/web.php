@@ -48,5 +48,7 @@ Route::delete('/grup-user/{idGrupUser}', [GrupUserController::class, 'destroy'])
 
 // Akses Menu Route
 Route::get('/akses-menu', [AksesMenuController::class, 'index'])->name('aksesMenu');
+Route::get('/akses-menu-edit/{idAksesMenu}', [AksesMenuController::class, 'edit'])->name('editAksesMenu');
 Route::post('/akses-menu', [AksesMenuController::class, 'store'])->name('addAksesMenu');
 Route::delete('/akses-menu/{idAksesMenu}', [AksesMenuController::class, 'destroy'])->name('deleteAksesMenu');
+Route::put('/akses-menu-edit/{idAksesMenu}', [AksesMenuController::class, 'update'])->name('updateAksesMenu');
