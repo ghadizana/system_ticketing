@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('idAksesMenu');
 
             $table->timestamps();
-            $table->foreign('idAksesMenu')->references('idAksesMenu')->on('akses_menus');
+            $table->foreign('idAksesMenu')->references('idAksesMenu')->on('akses_menus')->onDelete('cascade');
         });
     }
 

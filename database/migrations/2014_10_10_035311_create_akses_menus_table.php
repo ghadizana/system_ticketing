@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('label');
             $table->timestamps();
 
-            $table->foreign('idMenu')->references('idMenu')->on('menus');
+            $table->foreign('idMenu')->references('idMenu')->on('menus')->onDelete('cascade');
         });
     }
 
