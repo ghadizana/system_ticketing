@@ -4,7 +4,9 @@ use App\Http\Controllers\AksesMenuController;
 use App\Http\Controllers\DataUserController;
 use App\Http\Controllers\GrupUserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RegisterController;
+use App\Models\Menu;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,3 +54,10 @@ Route::get('/akses-menu-edit/{idAksesMenu}', [AksesMenuController::class, 'edit'
 Route::post('/akses-menu', [AksesMenuController::class, 'store'])->name('addAksesMenu');
 Route::delete('/akses-menu/{idAksesMenu}', [AksesMenuController::class, 'destroy'])->name('deleteAksesMenu');
 Route::put('/akses-menu-edit/{idAksesMenu}', [AksesMenuController::class, 'update'])->name('updateAksesMenu');
+
+// Menu Route
+Route::get('/menu', [MenuController::class, 'index'])->name('menu');
+Route::get('/menu-edit/{idAksesMenu}', [MenuController::class, 'edit'])->name('editMenu');
+Route::post('/menu', [MenuController::class, 'store'])->name('addMenu');
+Route::put('/menu-edit/{idMenu}', [MenuController::class, 'update'])->name('updateMenu');
+Route::delete('/menu/{idMenu}', [MenuController::class, 'destroy'])->name('deleteMenu');
