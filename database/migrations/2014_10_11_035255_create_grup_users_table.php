@@ -12,15 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('grup_users', function (Blueprint $table) {
-            $table->id('idGrupUser')->autoIncrement(false);
+            $table->id('idGrupUser')->autoIncrement(false)->primary();
             $table->string('grupUser');
             $table->unsignedBigInteger('idAksesMenu');
-            $table->unsignedBigInteger('deskripsi');
 
             $table->timestamps();
-            $table->unique('idGrupUser');
             $table->foreign('idAksesMenu')->references('idAksesMenu')->on('akses_menus');
-            $table->foreign('deskripsi')->references('idGrupUser')->on('grup_users');
         });
     }
 
