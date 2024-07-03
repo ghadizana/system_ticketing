@@ -11,7 +11,7 @@ class RegisterController extends Controller
 {
     public function register() {
         $grupUsers = GrupUser::all();
-        return view('auth.register', compact('grupUsers'));
+        return view('master.masterUser.register', compact('grupUsers'));
     }
 
     public function actionRegister(Request $request) {
