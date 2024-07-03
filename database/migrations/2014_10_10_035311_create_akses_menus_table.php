@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('akses_menus', function (Blueprint $table) {
-            $table->id('idAksesMenu');
+            $table->id('idAksesMenu')->autoIncrement(false)->primary();
             $table->unsignedBigInteger('idMenu');
             $table->string('deskripsi');
             $table->string('label');
