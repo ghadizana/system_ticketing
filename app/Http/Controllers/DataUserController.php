@@ -2,26 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GrupUser;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DataUserController extends Controller
 {
     public function index()
     {
-        $dataUsers = User::paginate(10);
-        return view('master.masterUser.user', compact('dataUsers'));
+        $grupUsers = GrupUser::all();
+        $dataUsers = User::with('grupUser')->paginate(10);
+        return view('master.masterUser.user', compact('dataUsers', 'grupUsers'));
     }
 
     public function show($userId)
     {
-        $users = User::where('userId', $userId)->first();
-        return view('master.masterUser.detail', compact('users'));
+        // $users = User::where('userId', $userId)->first();
+        $users = User::with('grupUser')->where('userId', $userId)->first();
+        $grupUsers = GrupUser::all();
+        return view('master.masterUser.detail', compact('users', 'grupUsers'));
+    }
+
+    public function store(Request $request) {
+        $user = User::create([
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'idProyek' => $request->idProyek,
+            'idKaryawan' => $request->idKaryawan,
+            'idGrupUser' => $request->idGrupUser,
+            'idDepartment' => $request->idDepartment,
+            'image' => $request->image,
+        ]);
+
+        return redirect()->route('masterUser')->with('success', 'Data berhasil ditambahkan');
     }
 
     public function edit($userId) {
-        $users = User::find($userId);
-        return view('master.masterUser.edit', compact('users', 'userId'));
+        $users = User::with('grupUser')->where('userId', $userId)->first();
+        $grupUsers = GrupUser::all();
+        return view('master.masterUser.edit', compact('users', 'userId', 'grupUsers'));
     }
 
     public function update($userId, Request $request) {
