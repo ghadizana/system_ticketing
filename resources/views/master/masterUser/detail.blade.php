@@ -57,7 +57,7 @@
                                             </div>
                                             <div class="mb-3 col-md-6">
                                                 <label for="lastName" class="form-label">Nama Grup user</label>
-                                                <input class="form-control" value="{{ $users->idGrupUser }}" disabled />
+                                                <input class="form-control" value="{{ $users->grupUser->grupUser }}" disabled />
                                             </div>
                                             <div class="mb-3 col-md-6">
                                                 <label for="lastName" class="form-label">Nama Department</label>

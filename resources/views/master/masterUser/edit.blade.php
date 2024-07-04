@@ -73,8 +73,14 @@
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="idGrupUser" class="form-label">Nama Grup User</label>
-                                                    <input class="form-control" id="idGrupUser" name="idGrupUser"
-                                                        value="{{ $users->idGrupUser }}" />
+                                                    <select name="idGrupUser" id="idGrupUser" class="form-control" required>
+                                                        @foreach ($grupUsers as $grupUser)
+                                                            <option value="{{ $grupUser->idGrupUser }}"
+                                                                {{ old('idGrupUser') == $grupUser->grupUser ? 'selected' : '' }}>
+                                                                {{ $grupUser->grupUser }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="idDepartment" class="form-label">Nama

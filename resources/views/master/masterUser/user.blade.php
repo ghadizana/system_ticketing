@@ -22,8 +22,8 @@
                                 {{-- Navbar Tambah Pengguna --}}
                                 <div class="container d-flex justify-content-between align-items-center">
                                     <h4 class="py-3 mb-0">Detail Pengguna</h4>
-                                    <a class="btn btn-primary" type="button" href="{{ route('register') }}">Tambah
-                                        Pengguna</a>
+                                    @include('master.masterUser.register')
+                                    <a class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#addUser" href="#">Tambah Akun Pengguna</a>
                                 </div>
                                 {{-- End Navbar Tambah Pengguna --}}
 
@@ -47,7 +47,7 @@
                                                     <td>{{ $user->username }}</td>
                                                     <td>{{ $user->email }}</td>
                                                     <td>{{ $user->idProyek }}</td>
-                                                    <td>{{ $user->idGrupUser }}</td>
+                                                    <td>{{ $user->grupUser->grupUser }}</td>
                                                     <td>
                                                         @if ($user->status === 1)
                                                             <span class="badge bg-label-primary me-1">Aktif</span>
