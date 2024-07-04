@@ -36,7 +36,12 @@ class MenuController extends Controller
     }
 
     public function update($idMenu, Request $request) {
-        Menu::where('idMenu', $idMenu)->update([]);
+        $menu = Menu::where('idMenu', $idMenu)->update([
+            'namaMenu' => $request->input('namaMenu'),
+            'baseUrl' => $request->input('baseUrl'),
+            'label' => $request->input('label'),
+            'status' => $request->input('status'),
+        ]);
 
         return redirect()->route('menu');
     }
