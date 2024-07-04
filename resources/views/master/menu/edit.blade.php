@@ -40,8 +40,8 @@
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="linkTautan" class="form-label">Link Tautan</label>
-                                                    <input class="form-control" id="linkTautan" name="linkTautan"
-                                                        value="{{ $menu->linkTautan }}" />
+                                                    <input class="form-control" id="linkTautan" name="baseUrl"
+                                                        value="{{ $menu->baseUrl }}" />
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="status" class="form-label">Status</label>
