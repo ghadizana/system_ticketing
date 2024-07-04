@@ -26,7 +26,6 @@ Route::get('/', function () {
 
 // Register Route
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
-Route::post('/register', [RegisterController::class, 'actionRegister'])->name('actionRegister');
 
 // Login Route
 Route::get('/login', [LoginController::class, 'login'])->name('login');
@@ -37,6 +36,7 @@ Route::get('/master-user', [DataUserController::class, 'index'])->name('masterUs
 Route::get('/master-user-detail/{userId}', [DataUserController::class, 'show'])->name('detailUser');
 Route::get('/master-user-edit/{userId}', [DataUserController::class, 'edit'])->name('editUser');
 
+Route::post('/master-user', [DataUserController::class, 'store'])->name('addUser');
 Route::put('/master-user-update/{userId}', [DataUserController::class, 'update'])->name('updateUser');
 Route::delete('/master-user/{userId}', [DataUserController::class, 'destroy'])->name('deleteUser');
 
