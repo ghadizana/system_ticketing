@@ -12,9 +12,7 @@
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
-
-
-                    <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="container-fluid w-100 flex-grow-1 container-p-y">
                         <!-- Layout Demo -->
                         <div class="layout-demo-info">
                             <div class="layout-demo-placeholder">
@@ -27,64 +25,66 @@
                                 </div>
                                 {{-- End Navbar Tambah Pengguna --}}
 
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class="table-dark">
-                                            <tr>
-                                                <th>Nama User</th>
-                                                <th>Username</th>
-                                                <th>Email</th>
-                                                <th>Nama Proyek</th>
-                                                <th>Grup User</th>
-                                                <th>Status Pengguna</th>
-                                                <th>Lihat Detail</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($dataUsers as $user)
+                                <div class="card">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="table-dark">
                                                 <tr>
-                                                    <td>{{ $user->nama }}</td>
-                                                    <td>{{ $user->username }}</td>
-                                                    <td>{{ $user->email }}</td>
-                                                    <td>{{ $user->idProyek }}</td>
-                                                    <td>{{ $user->grupUser->grupUser }}</td>
-                                                    <td>
-                                                        @if ($user->status === 1)
-                                                            <span class="badge bg-label-primary me-1">Aktif</span>
-                                                        @else
-                                                            <span class="badge bg-label-warning me-1">Tidak
-                                                                Aktif</span>
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <button type="button"
-                                                                class="btn p-0 dropdown-toggle hide-arrow"
-                                                                data-bs-toggle="dropdown"><i
-                                                                    class="bx bx-dots-vertical-rounded"></i></button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item"
-                                                                    href="{{ route('detailUser', $user->userId) }}"><i
-                                                                        class="bx bx-user me-2"></i>Detail Akun</a>
-                                                                <a class="dropdown-item"
-                                                                    href="{{ route('editUser', $user->userId) }}"><i
-                                                                        class="bx bx-edit-alt me-2"></i>Edit</a>
-                                                                <form action="{{ route('deleteUser', $user->userId) }}"
-                                                                    method="POST">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" class="dropdown-item"
-                                                                        onclick="return confirm('Apakah anda yakin ingin menghapus?')">
-                                                                        <i class="bx bx-trash me-2"></i>Hapus
-                                                                    </button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </td>
+                                                    <th>Nama User</th>
+                                                    <th>Username</th>
+                                                    <th>Email</th>
+                                                    <th>Nama Proyek</th>
+                                                    <th>Grup User</th>
+                                                    <th>Status Pengguna</th>
+                                                    <th>Aksi</th>
                                                 </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($dataUsers as $user)
+                                                    <tr>
+                                                        <td class="text-start">{{ $user->nama }}</td>
+                                                        <td class="text-start">{{ $user->username }}</td>
+                                                        <td class="text-start">{{ $user->email }}</td>
+                                                        <td class="text-start">{{ $user->idProyek }}</td>
+                                                        <td class="text-start">{{ $user->grupUser->grupUser }}</td>
+                                                        <td>
+                                                            @if ($user->status === 1)
+                                                                <span class="badge bg-label-primary me-1">Aktif</span>
+                                                            @else
+                                                                <span class="badge bg-label-warning me-1">Tidak
+                                                                    Aktif</span>
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <button type="button"
+                                                                    class="btn p-0 dropdown-toggle hide-arrow"
+                                                                    data-bs-toggle="dropdown"><i
+                                                                        class="bx bx-dots-vertical-rounded"></i></button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('detailUser', $user->userId) }}"><i
+                                                                            class="bx bx-user me-2"></i>Detail Akun</a>
+                                                                    @include('master.masterUser.edit')
+                                                                    <a class="dropdown-item" type="button" href="{{ route('editUser') }}"><i
+                                                                            class="bx bx-edit-alt me-2"></i>Edit</a>
+                                                                    <form action="{{ route('deleteUser', $user->userId) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit" class="dropdown-item"
+                                                                            onclick="return confirm('Apakah anda yakin ingin menghapus?')">
+                                                                            <i class="bx bx-trash me-2"></i>Hapus
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
 
                                 <nav aria-label="Page navigation">

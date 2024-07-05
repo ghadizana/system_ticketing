@@ -9,13 +9,13 @@
                 <hr>
                 <div class="modal-body">
                     <div class="row g-2">
-                        <div class="col mb-0">
+                        <div class="col mb-0 text-start">
                             <label for="idGrupUser" class="form-label">Id Grup User</label>
                             <input type="number" id="idGrupUser" class="form-control" name="idGrupUser"
                                 placeholder="Masukkan Id Grup User">
                         </div>
-                        <div class="col mb-0">
-                            <label for="grupUser" class="form-label">Nama Grup User</label>
+                        <div class="col mb-0 text-start">
+                            <label for="grupUser" class="form-label text-start">Nama Grup User</label>
                             <input type="text" id="grupUser" class="form-control" name="grupUser"
                                 placeholder="Masukkan Nama Grup User">
                         </div>

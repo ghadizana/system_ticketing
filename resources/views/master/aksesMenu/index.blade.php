@@ -39,9 +39,9 @@
                                             @foreach ($aksesMenu as $akses)
                                                 <tr>
                                                     <td>{{ $akses->idAksesMenu }}</td>
-                                                    <td>{{ $akses->Menu->namaMenu }}</td>
-                                                    <td>{{ $akses->deskripsi }}</td>
-                                                    <td>{{ $akses->label }}</td>
+                                                    <td class="text-start">{{ $akses->Menu->namaMenu }}</td>
+                                                    <td class="text-start">{{ $akses->deskripsi }}</td>
+                                                    <td class="text-start">{{ $akses->label }}</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button type="button"
