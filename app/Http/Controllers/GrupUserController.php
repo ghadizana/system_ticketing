@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AksesMenu;
 use App\Models\GrupUser;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ class GrupUserController extends Controller
         $request->validate([
             'idGrupUser' => 'required|unique:grup_users,idGrupUser',
             'grupUser' => 'required',
+            'idAksesMenu' => 'required|akses_menu,idAksesMenu'
         ]);
         
         $grupUsers = GrupUser::create([
