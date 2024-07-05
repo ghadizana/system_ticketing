@@ -25,6 +25,19 @@ class DataUserController extends Controller
     }
 
     public function store(Request $request) {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'username' => 'required|string|max:255|unique:users',
+            'password' => 'required|string|min:8',
+            'idProyek' => 'required|string|max:255',
+            'idKaryawan' => 'required|string|max:255|unique:users',
+            'idGrupUser' => 'required|exists:grup_users,idGrupUser',
+            'idDepartment' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'status' => 'required|boolean',
+        ]);
+
         $user = User::create([
             'username' => $request->username,
             'password' => Hash::make($request->password),
@@ -43,7 +56,7 @@ class DataUserController extends Controller
     public function edit($userId) {
         $users = User::with('grupUser')->where('userId', $userId)->first();
         $grupUsers = GrupUser::all();
-        return view('master.masterUser.edit', compact('users', 'userId', 'grupUsers'));
+        return view('master.masterUser.edit', compact('users','grupUsers'));
     }
 
     public function update($userId, Request $request) {
