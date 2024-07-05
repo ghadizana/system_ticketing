@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\GrupUser;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -26,9 +27,9 @@ class UserFactory extends Factory
             'password' => Hash::make('password'),
             'idProyek' => 'PRJ' . fake()->numberBetween(1, 100),
             'idKaryawan' => 'KRY' . fake()->unique()->numberBetween(1, 1000),
-            'idGrupUser' => fake()->numberBetween(1, 10),
+            'idGrupUser' => GrupUser::inRandomOrder()->first()->idGrupUser,
             'idDepartment' => 'DEP' . fake()->numberBetween(1, 10),
-            'status' => fake()->randomElement(['Aktif', 'Tidak Aktif']),
+            'status' => fake()->randomElement(['1', '0']),
             'remember_token' => Str::random(10),
             'created_at' => now(),
             'updated_at' => now(),
