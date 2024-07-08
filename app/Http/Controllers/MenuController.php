@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class MenuController extends Controller
 {
@@ -13,12 +14,16 @@ class MenuController extends Controller
     }
 
     public function store(Request $request) {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'idMenu' => 'required|unique:menus,idMenu',
-            'namaMenu' => 'required',
+            'namaMenu' => 'required|unique',
             'baseUrl' => 'required',
             'label' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->messages())->withInput();
+        }
 
         $menu = Menu::create([
             'idMenu' => $request->input('idMenu'),
@@ -26,8 +31,6 @@ class MenuController extends Controller
             'baseUrl' => $request->input('baseUrl'),
             'label' => $request->input('label'),
         ]);
-
-        return redirect()->route('menu')->with('success', 'Data berhasil ditambahkan');
     }
 
     public function edit($idMenu) {

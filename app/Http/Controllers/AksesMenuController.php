@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AksesMenu;
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AksesMenuController extends Controller
 {
@@ -15,16 +16,18 @@ class AksesMenuController extends Controller
     }
 
     public function store(Request $request) {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'idAksesMenu' => 'required|unique:akses_menus,idAksesMenu',
             'idMenu' => 'required',
             'deskripsi' => 'required',
             'label' => 'required',
         ]);
 
-        $aksesMenu = AksesMenu::create($request->all());
+        if ($validator->fails()) {
+            return redirect()->route('addAksesMenu')->withErrors($validator->messages())->withInput();
+        }
 
-        return redirect()->route('aksesMenu')->with('success', 'Data berhasil ditambahkan');
+        $aksesMenu = AksesMenu::create($request->all());
     }
 
     public function edit($idAksesMenu) {

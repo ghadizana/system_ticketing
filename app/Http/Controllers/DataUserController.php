@@ -6,6 +6,7 @@ use App\Models\GrupUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class DataUserController extends Controller
 {
@@ -25,7 +26,7 @@ class DataUserController extends Controller
     }
 
     public function store(Request $request) {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'nama' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'username' => 'required|string|max:255|unique:users',
@@ -35,8 +36,11 @@ class DataUserController extends Controller
             'idGrupUser' => 'required|exists:grup_users,idGrupUser',
             'idDepartment' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'status' => 'required|boolean',
         ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->messages())->withInput();
+        }
 
         $user = User::create([
             'username' => $request->username,
@@ -49,8 +53,6 @@ class DataUserController extends Controller
             'idDepartment' => $request->idDepartment,
             'image' => $request->image,
         ]);
-
-        return redirect()->route('masterUser')->with('success', 'Data berhasil ditambahkan');
     }
 
     public function edit($userId) {
