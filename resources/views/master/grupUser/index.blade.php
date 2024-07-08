@@ -12,7 +12,7 @@
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
-                    <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="container-fluid w-100 flex-grow-1 container-p-y">
                         <!-- Layout Demo -->
                         <div class="layout-demo-info">
                             <div class="layout-demo-placeholder">
@@ -26,49 +26,51 @@
                                 </div>
                                 {{-- End Navbar Tambah Grup User --}}
 
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class="table-dark">
-                                            <tr>
-                                                <th>Id Grup User</th>
-                                                <th>Deskripsi</th>
-                                                <th>Akses Menu</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($grupUsers as $grupUser)
+                                <div class="card">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="table-dark">
                                                 <tr>
-                                                    <td>{{ $grupUser->idGrupUser }}</td>
-                                                    <td>{{ $grupUser->grupUser }}</td>
-                                                    <td></td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <button type="button"
-                                                                class="btn p-0 dropdown-toggle hide-arrow"
-                                                                data-bs-toggle="dropdown"><i
-                                                                    class="bx bx-dots-vertical-rounded"></i></button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item"
-                                                                    href="{{ route('editGrupUser', $grupUser->idGrupUser) }}"><i
-                                                                        class="bx bx-edit-alt me-2"></i>Edit</a>
-                                                                <form
-                                                                    action="{{ route('deleteGrupUser', $grupUser->idGrupUser) }}"
-                                                                    method="POST">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" class="dropdown-item"
-                                                                        onclick="return confirm('Apakah anda yakin ingin menghapus?')">
-                                                                        <i class="bx bx-trash me-2"></i>Hapus
-                                                                    </button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </td>
+                                                    <th>Id Grup User</th>
+                                                    <th class="text-start">Deskripsi</th>
+                                                    <th class="text-start">Nama Akses Menu</th>
+                                                    <th>Aksi</th>
                                                 </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($grupUsers as $grupUser)
+                                                    <tr>
+                                                        <td>{{ $grupUser->idGrupUser }}</td>
+                                                        <td class="text-start">{{ $grupUser->grupUser }}</td>
+                                                        <td class="text-start">{{ $grupUser->AksesMenu->deskripsi }}</td>
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <button type="button"
+                                                                    class="btn p-0 dropdown-toggle hide-arrow"
+                                                                    data-bs-toggle="dropdown"><i
+                                                                        class="bx bx-dots-vertical-rounded"></i></button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('editGrupUser', $grupUser->idGrupUser) }}"><i
+                                                                            class="bx bx-edit-alt me-2"></i>Edit</a>
+                                                                    <form
+                                                                        action="{{ route('deleteGrupUser', $grupUser->idGrupUser) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit" class="dropdown-item"
+                                                                            onclick="return confirm('Apakah anda yakin ingin menghapus?')">
+                                                                            <i class="bx bx-trash me-2"></i>Hapus
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -5,22 +5,29 @@ namespace App\Http\Controllers;
 use App\Models\AksesMenu;
 use App\Models\GrupUser;
 use App\Models\User;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class GrupUserController extends Controller
 {
     public function index() {
         $grupUsers = GrupUser::paginate(10);
-        return view('master.grupUser.index', compact('grupUsers'));
+        $aksesMenu = AksesMenu::all();
+        return view('master.grupUser.index', compact('grupUsers', 'aksesMenu'));
     }
 
     public function store(Request $request) {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'idGrupUser' => 'required|unique:grup_users,idGrupUser',
             'grupUser' => 'required',
             'idAksesMenu' => 'required|akses_menu,idAksesMenu'
         ]);
-        
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->messages())->withInput();
+        }
+
         $grupUsers = GrupUser::create([
             'idGrupUser' => $request->idGrupUser,
             'grupUser' => $request->grupUser,
@@ -31,7 +38,8 @@ class GrupUserController extends Controller
 
     public function edit($idGrupUser) {
         $grupUser = GrupUser::find($idGrupUser);
-        return view('master.grupUser.edit', compact('grupUser', 'idGrupUser'));
+        $aksesMenu = AksesMenu::all();
+        return view('master.grupUser.edit', compact('grupUser', 'idGrupUser', 'aksesMenu'));
     }
 
     public function update($idGrupUser, Request $request) {

@@ -38,10 +38,22 @@
                                                     <input class="form-control" id="grupUser" name="grupUser"
                                                         value="{{ $grupUser->grupUser }}" />
                                                 </div>
+                                                <div class="mb-3 col-md-6">
+                                                    <label for="namaMenu" class="form-label">Nama Akses Menu</label>
+                                                    <select name="namaMenu" id="namaMenu" class="form-control" required>
+                                                        @foreach ($aksesMenu as $item)
+                                                            <option value="{{ $item->idAksesMenu }}"
+                                                                {{ old('idAksesMenu') == $item->idAksesMenu ? 'selected' : '' }}>
+                                                                {{ $item->deskripsi }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                                 <div class="mt-2">
                                                     <button type="submit" class="btn btn-primary me-2">Simpan
                                                         perubahan</button>
-                                                    <button type="reset" class="btn btn-outline-secondary">Batal</button>
+                                                    <button type="button" class="btn btn-outline-secondary"
+                                                        onclick="window.history.back()">Batal</button>
                                                 </div>
                                             </div>
                                         </form>

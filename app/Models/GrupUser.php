@@ -15,4 +15,8 @@ class GrupUser extends Model
         'idGrupUser',
         'grupUser'
     ];
+
+    public function AksesMenu() {
+        return $this->belongsTo(AksesMenu::class, 'idAksesMenu');
+    }
 }
