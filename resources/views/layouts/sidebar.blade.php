@@ -67,28 +67,28 @@
                 <div data-i18n="Dashboards">Master</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item {{ Request::routeIs('masterUser') ? 'active' : '' }}">
+                <li class="menu-item {{ Request::is('master-user*') ? 'active' : '' }}">
                     <a href="{{ route('masterUser') }}" class="menu-link">
                         <div data-i18n="CRM">Master User</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::routeIs('grupUser') ? 'active' : '' }}">
+                <li class="menu-item {{ Request::is('grup-user*') ? 'active' : '' }}">
                     <a href="{{ route('grupUser') }}" class="menu-link">
                         <div data-i18n="CRM">Grup User</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::routeIs('aksesMenu') ? 'active' : '' }}">
+                <li class="menu-item {{ Request::is('akses-menu*') ? 'active' : '' }}">
                     <a href="{{ route('aksesMenu') }}" class="menu-link">
                         <div data-i18n="CRM">Akses Menu</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::routeIs('menu') ? 'active' : '' }}">
+                <li class="menu-item {{ Request::is('menu*') ? 'active' : '' }}">
                     <a href="{{ route('menu') }}" class="menu-link">
                         <div data-i18n="CRM">Menu</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="{{ route('masterUser') }}" target="_blank" class="menu-link">
+                <li class="menu-item disabled">
+                    <a href="#"class="menu-link disabled">
                         <div data-i18n="CRM">Standard Reference</div>
                     </a>
                 </li>
