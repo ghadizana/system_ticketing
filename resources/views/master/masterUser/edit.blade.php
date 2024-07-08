@@ -90,13 +90,21 @@
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="status" class="form-label">Status Pengguna</label>
-                                                    <input class="form-control" id="status" name="status"
-                                                        value="{{ $users->status }}" />
+                                                    <div class="input-group">
+                                                        <select class="form-control" id="status" name="status">
+                                                            <option value="1"
+                                                                {{ $users->status == 1 ? 'selected' : '' }}>Aktif</option>
+                                                            <option value="0"
+                                                                {{ $users->status == 0 ? 'selected' : '' }}>Tidak Aktif
+                                                            </option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                                 <div class="mt-2">
                                                     <button type="submit" class="btn btn-primary me-2">Simpan
                                                         perubahan</button>
-                                                    <button type="reset" class="btn btn-outline-secondary">Batal</button>
+                                                    <button type="button" class="btn btn-outline-secondary"
+                                                        onclick="window.history.back()">Batal</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -122,3 +130,88 @@
     <div class="layout-overlay layout-menu-toggle"></div>
     </div>
 @endsection
+
+
+<!-- Modal -->
+{{-- <div class="modal fade" id="editUser" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userModalLabel">Edit User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Modal content goes here -->
+                <form action="{{ route('updateUser', $users->userId) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="userId" value="{{ $users->userId }}">
+                    <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label for="idKaryawan" class="form-label">Id Karyawan</label>
+                            <input class="form-control" id="idKaryawan" name="idKaryawan"
+                                value="{{ $users->idKaryawan }}" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="nama" class="form-label">Nama</label>
+                            <input class="form-control" id="nama" name="nama" value="{{ $users->nama }}" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="username" class="form-label">Username</label>
+                            <input class="form-control" id="username" name="username" value="{{ $users->username }}" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input class="form-control" id="email" name="email" value="{{ $users->email }}" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="idProyek" class="form-label">Nama Proyek</label>
+                            <input class="form-control" id="idProyek" name="idProyek" value="{{ $users->idProyek }}" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="idGrupUser" class="form-label">Nama Grup User</label>
+                            <select name="idGrupUser" id="idGrupUser" class="form-control" required>
+                                @foreach ($grupUsers as $grupUser)
+                                    <option value="{{ $grupUser->idGaryUser }}"
+                                        {{ old('idGrupUser') == $grupUser->grupUser ? 'selected' : '' }}>
+                                        {{ $grupUser->grupUser }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="idDepartment" class="form-label">Nama Department</label>
+                            <input class="form-control" id="idDepartment" name="idDepartment"
+                                value="{{ $users->idDepartment }}" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="status" class="form-label">Status Pengguna</label>
+                            <input class="form-control" id="status" name="status" value="{{ $users->status }}" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary me-2">Simpan
+                    perubahan</button>
+                <button type="reset" class="btn btn-outline-secondary">Batal</button>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+{{-- <script>
+    $(document).ready(function() {
+        $('#editUser').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var idGrupUser = button.data('id-grup-user');
+            $.ajax({
+                type: 'GET',
+                url: '{{ route('editUser') }}/' + idGrupUser,
+                success: function(data) {
+                    $('#edit-form-content').html(data);
+                }
+            });
+        });
+    });
+</script> --}}

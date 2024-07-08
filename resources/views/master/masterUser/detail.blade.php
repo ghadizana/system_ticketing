@@ -65,7 +65,7 @@
                                             </div>
                                             <div class="mb-3 col-md-6">
                                                 <label for="lastName" class="form-label">Status Pengguna</label>
-                                                <input class="form-control" value="{{ $users->status }}" disabled />
+                                                <input class="form-control" value="{{ $users->status == 1? 'Aktif' : 'Tidak Aktif' }}" disabled />
                                             </div>
                                         </div>
                                     </div>

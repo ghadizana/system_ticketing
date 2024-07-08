@@ -45,8 +45,15 @@
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="status" class="form-label">Status</label>
-                                                    <input class="form-control" id="status" name="status"
-                                                        value="{{ $menu->status }}" />
+                                                    <div class="input-group">
+                                                        <select class="form-control" id="status" name="status">
+                                                            <option value="1"
+                                                                {{ $menu->status == 1 ? 'selected' : '' }}>Aktif</option>
+                                                            <option value="0"
+                                                                {{ $menu->status == 0 ? 'selected' : '' }}>Tidak Aktif
+                                                            </option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="label" class="form-label">Label</label>
@@ -56,7 +63,8 @@
                                                 <div class="mt-2">
                                                     <button type="submit" class="btn btn-primary me-2">Simpan
                                                         perubahan</button>
-                                                    <button type="reset" class="btn btn-outline-secondary">Batal</button>
+                                                    <button type="button" class="btn btn-outline-secondary"
+                                                        onclick="window.history.back()">Batal</button>
                                                 </div>
                                             </div>
                                         </form>
