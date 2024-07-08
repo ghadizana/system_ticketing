@@ -21,11 +21,12 @@
                                 <div class="container d-flex justify-content-between align-items-center">
                                     <h4 class="py-3 mb-0">Detail Pengguna</h4>
                                     @include('master.masterUser.register')
-                                    <a class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#addUser" href="#">Tambah Akun Pengguna</a>
+                                    <a class="btn btn-primary" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#addUser" href="#">Tambah Akun Pengguna</a>
                                 </div>
                                 {{-- End Navbar Tambah Pengguna --}}
 
-                                <div class="card">
+                                <div class="card mb-3">
                                     <div class="table-responsive">
                                         <table class="table">
                                             <thead class="table-dark">
@@ -65,8 +66,8 @@
                                                                     <a class="dropdown-item"
                                                                         href="{{ route('detailUser', $user->userId) }}"><i
                                                                             class="bx bx-user me-2"></i>Detail Akun</a>
-                                                                    @include('master.masterUser.edit')
-                                                                    <a class="dropdown-item" type="button" href="{{ route('editUser') }}"><i
+                                                                    {{-- @include('master.masterUser.edit') --}}
+                                                                    <a class="dropdown-item" type="button" href="{{ route('editUser', $user->userId) }}"><i
                                                                             class="bx bx-edit-alt me-2"></i>Edit</a>
                                                                     <form action="{{ route('deleteUser', $user->userId) }}"
                                                                         method="POST">

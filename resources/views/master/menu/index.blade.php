@@ -24,60 +24,61 @@
                                 </div>
                                 {{-- End Navbar Tambah Grup User --}}
 
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class="table-dark">
-                                            <tr>
-                                                <th>Id Menu</th>
-                                                <th>Nama Menu</th>
-                                                <th>Link Tautan</th>
-                                                <th>Status</th>
-                                                <th>Label</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($menu as $item)
+                                <div class="card">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="table-dark">
                                                 <tr>
-                                                    <td>{{ $item->idMenu }}</td>
-                                                    <td>{{ $item->namaMenu }}</td>
-                                                    <td>{{ $item->baseUrl }}</td>
-                                                    <td>
-                                                        @if ($item->status === 1)
-                                                            <span class="badge bg-label-primary me-1">Aktif</span>
-                                                        @else
-                                                            <span class="badge bg-label-warning me-1">Tidak
-                                                                Aktif</span>
-                                                        @endif
-                                                    </td>
-                                                    <td>{{ $item->label }}</td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <button type="button"
-                                                                class="btn p-0 dropdown-toggle hide-arrow"
-                                                                data-bs-toggle="dropdown"><i
-                                                                    class="bx bx-dots-vertical-rounded"></i></button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item"
-                                                                    href="{{ route('editMenu', $item->idMenu) }}"><i
-                                                                        class="bx bx-edit-alt me-2"></i>Edit</a>
-                                                                <form
-                                                                    action="{{ route('deleteMenu', $item->idMenu) }}"
-                                                                    method="POST">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" class="dropdown-item"
-                                                                        onclick="return confirm('Apakah anda yakin ingin menghapus?')">
-                                                                        <i class="bx bx-trash me-2"></i>Hapus
-                                                                    </button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </td>
+                                                    <th>Id Menu</th>
+                                                    <th>Nama Menu</th>
+                                                    <th>Link Tautan</th>
+                                                    <th>Status</th>
+                                                    <th>Label</th>
+                                                    <th>Aksi</th>
                                                 </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($menu as $item)
+                                                    <tr>
+                                                        <td>{{ $item->idMenu }}</td>
+                                                        <td>{{ $item->namaMenu }}</td>
+                                                        <td>{{ $item->baseUrl }}</td>
+                                                        <td>
+                                                            @if ($item->status === 1)
+                                                                <span class="badge bg-label-primary me-1">Aktif</span>
+                                                            @else
+                                                                <span class="badge bg-label-warning me-1">Tidak
+                                                                    Aktif</span>
+                                                            @endif
+                                                        </td>
+                                                        <td>{{ $item->label }}</td>
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <button type="button"
+                                                                    class="btn p-0 dropdown-toggle hide-arrow"
+                                                                    data-bs-toggle="dropdown"><i
+                                                                        class="bx bx-dots-vertical-rounded"></i></button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('editMenu', $item->idMenu) }}"><i
+                                                                            class="bx bx-edit-alt me-2"></i>Edit</a>
+                                                                    <form action="{{ route('deleteMenu', $item->idMenu) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit" class="dropdown-item"
+                                                                            onclick="return confirm('Apakah anda yakin ingin menghapus?')">
+                                                                            <i class="bx bx-trash me-2"></i>Hapus
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
