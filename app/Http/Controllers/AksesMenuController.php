@@ -4,20 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\AksesMenu;
 use App\Models\Menu;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class AksesMenuController extends Controller
 {
     public function index() {
-        $aksesMenu = AksesMenu::all();
+        $aksesMenu = AksesMenu::with('Menu')->get();        
         $menu = Menu::all();
         return view('master.aksesMenu.index', compact('aksesMenu', 'menu'));
     }
 
     public function store(Request $request) {
         $validator = Validator::make($request->all(), [
-            'idAksesMenu' => 'required|unique:akses_menus,idAksesMenu',
+            'idAksesMenu' => 'required',
             'idMenu' => 'required',
             'deskripsi' => 'required',
             'label' => 'required',
@@ -28,6 +29,7 @@ class AksesMenuController extends Controller
         }
 
         $aksesMenu = AksesMenu::create($request->all());
+        $aksesMenu->idMenu()->sync($request->input('idMenu'));
     }
 
     public function edit($idAksesMenu) {
@@ -47,13 +49,15 @@ class AksesMenuController extends Controller
     }
 
     public function destroy($idAksesMenu) {
-        $aksesMenu = AksesMenu::where('idAksesMenu', $idAksesMenu);
+        $aksesMenu = AksesMenu::where('idAksesMenu', $idAksesMenu)->first();
 
         if ($aksesMenu) {
+            User::where('idGrupUser', $aksesMenu->idGrupUser)->delete();
             $aksesMenu->delete();
-            return redirect()->route('aksesMenu')->with('success', 'User deleted successfully');
+            
+            return redirect()->route('aksesMenu')->with('success', 'Akses Menu sudah dihapus');
         } else {
-            return redirect()->route('aksesMenu')->with('error', 'User not found');
+            return redirect()->route('aksesMenu')->with('error', 'Akses Menu not found');
         }
     }
 }
