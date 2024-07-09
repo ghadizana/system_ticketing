@@ -30,7 +30,6 @@
                                             <thead class="table-dark">
                                                 <tr>
                                                     <th>Id Akses Menu</th>
-                                                    <th>Nama Menu</th>
                                                     <th>Deskripsi</th>
                                                     <th>Label</th>
                                                     <th>Aksi</th>
@@ -40,8 +39,11 @@
                                                 @foreach ($aksesMenu as $akses)
                                                     <tr>
                                                         <td>{{ $akses->idAksesMenu }}</td>
-                                                        <td class="text-start">{{ $akses->Menu->namaMenu }}</td>
-                                                        <td class="text-start">{{ $akses->deskripsi }}</td>
+                                                        <td class="text-start">
+                                                            @foreach ($akses->Menu as $item)
+                                                                {{ $item->namaMenu }} <br>
+                                                            @endforeach
+                                                        </td>
                                                         <td class="text-start">{{ $akses->label }}</td>
                                                         <td>
                                                             <div class="dropdown">
