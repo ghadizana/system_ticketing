@@ -13,7 +13,7 @@ class Menu extends Model
 
     protected $fillable = ['idMenu', 'namaMenu', 'baseUrl', 'label'];
 
-    public function AksesMenu() {
-        return $this->hasMany(AksesMenu::class, 'idAksesMenu');
+    public function AksesMenus() {
+        return $this->belongsToMany(AksesMenu::class, 'akses_menus_menus', 'idMenu', 'idAksesMenu');
     }
 }
