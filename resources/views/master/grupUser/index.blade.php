@@ -42,7 +42,7 @@
                                                     <tr>
                                                         <td>{{ $grupUser->idGrupUser }}</td>
                                                         <td class="text-start">{{ $grupUser->grupUser }}</td>
-                                                        <td class="text-start">{{ $grupUser->AksesMenu->deskripsi }}</td>
+                                                        <td class="text-start">{{ $grupUser->idAksesMenu }}</td>
                                                         <td>
                                                             <div class="dropdown">
                                                                 <button type="button"
