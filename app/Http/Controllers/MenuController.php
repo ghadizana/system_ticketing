@@ -16,7 +16,7 @@ class MenuController extends Controller
     public function store(Request $request) {
         $validator = Validator::make($request->all(), [
             'idMenu' => 'required|unique:menus,idMenu',
-            'namaMenu' => 'required|unique',
+            'namaMenu' => 'required|unique:menus,namaMenu',
             'baseUrl' => 'required',
             'label' => 'required',
         ]);
