@@ -13,7 +13,8 @@ class GrupUser extends Model
 
     protected $fillable = [
         'idGrupUser',
-        'grupUser'
+        'grupUser',
+        'idAksesMenu'
     ];
 
     public function AksesMenu() {
