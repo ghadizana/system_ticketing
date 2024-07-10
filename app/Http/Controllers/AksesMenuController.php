@@ -28,8 +28,15 @@ class AksesMenuController extends Controller
             return redirect()->route('addAksesMenu')->withErrors($validator->messages())->withInput();
         }
 
-        $aksesMenu = AksesMenu::create($request->all());
-        $aksesMenu->idMenu()->sync($request->input('idMenu'));
+        // $aksesMenu = AksesMenu::create($request->all());
+        $aksesMenu = AksesMenu::create([
+            'idAksesMenu' => $request->input('idAksesMenu'),
+            'idMenu' => $request->input('idMenu'),
+            'deskripsi' => $request->input('deskripsi'),
+            'label' => $request->input('label'),
+        ]);
+        
+        $aksesMenu->Menu()->sync($request->input('idMenu'));
     }
 
     public function edit($idAksesMenu) {
