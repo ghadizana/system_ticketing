@@ -21,16 +21,14 @@ class MenuController extends Controller
             'label' => 'required',
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->messages())->withInput();
-        }
-
         $menu = Menu::create([
             'idMenu' => $request->input('idMenu'),
             'namaMenu' => $request->input('namaMenu'),
             'baseUrl' => $request->input('baseUrl'),
             'label' => $request->input('label'),
-        ]);
+        ])->save();
+
+        return redirect()->route('menu');
     }
 
     public function edit($idMenu) {
