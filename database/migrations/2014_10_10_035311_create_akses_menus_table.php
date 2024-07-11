@@ -12,13 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('akses_menus', function (Blueprint $table) {
-            $table->id('idAksesMenu')->autoIncrement(false)->primary();
-            $table->unsignedBigInteger('idMenu');
+            $table->id('idAksesMenu');
             $table->string('deskripsi');
             $table->string('label');
             $table->timestamps();
-
-            $table->foreign('idMenu')->references('idMenu')->on('menus')->onDelete('cascade');
         });
     }
 
