@@ -10,14 +10,6 @@
                 <div class="modal-body">
                     <div class="row g-2">
                         <div class="col mb-2 text-start">
-                            <label for="idMenu" class="form-label">Id Menu</label>
-                            <input type="number" id="idMenu" class="form-control" name="idMenu"
-                                placeholder="Masukkan Id Menu" autofocus required value="{{ old('idMenu') }}">
-                            @error('idMenu')
-                                <div class="text text-danger text-start">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="col mb-2 text-start">
                             <label for="namaMenu" class="form-label">Nama Menu</label>
                             <input type="text" id="namaMenu" class="form-control" name="namaMenu"
                                 placeholder="Masukkan Nama Menu" autofocus required value="{{ old('namaMenu') }}">
