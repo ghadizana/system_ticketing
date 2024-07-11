@@ -12,8 +12,6 @@ class AksesMenu extends Model
     protected $primaryKey = 'idAksesMenu';
 
     protected $fillable = [
-        'idAksesMenu',
-        'idMenu',
         'deskripsi',
         'label',
     ];

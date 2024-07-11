@@ -11,7 +11,7 @@ class Menu extends Model
 
     protected $primaryKey = 'idMenu';
 
-    protected $fillable = ['idMenu', 'namaMenu', 'baseUrl', 'label'];
+    protected $fillable = ['namaMenu', 'baseUrl', 'label'];
 
     public function AksesMenus() {
         return $this->belongsToMany(AksesMenu::class, 'akses_menus_menus', 'idMenu', 'idAksesMenu');
