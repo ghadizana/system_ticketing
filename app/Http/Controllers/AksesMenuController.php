@@ -19,22 +19,33 @@ class AksesMenuController extends Controller
     public function store(Request $request) {
         $validator = Validator::make($request->all(), [
             'idAksesMenu' => 'required',
-            'idMenu' => 'required',
             'deskripsi' => 'required',
             'label' => 'required',
+            'idMenu' => 'required|array',
+            'idMenu.*' => 'exists:menu,idMenu'
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->route('addAksesMenu')->withErrors($validator->messages())->withInput();
+        try {
+            $aksesMenu = AksesMenu::create([
+                'idAksesMenu' => $request->input('idAksesMenu'),
+                'idMenu' => $request->input('idMenu'),
+                'deskripsi' => $request->input('deskripsi'),
+                'label' => $request->input('label'),
+            ]);
+
+            if(!$aksesMenu) {
+                throw new \Exception('Failed to create Akses Menu.');
+            }
+
+            foreach ($request->input('idMenu') as $menuId) {
+                $aksesMenu->Menu()->attach($menuId);
+            }
+
+            return redirect()->route('aksesMenu')->with('success', 'Akses Menu berhasil dibuat.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['Error' => $e->getMessage()])->withInput();
         }
-
-        // $aksesMenu = AksesMenu::create($request->all());
-        $aksesMenu = AksesMenu::create([
-            'idAksesMenu' => $request->input('idAksesMenu'),
-            'idMenu' => $request->input('idMenu'),
-            'deskripsi' => $request->input('deskripsi'),
-            'label' => $request->input('label'),
-        ]);
+        
         
         $aksesMenu->Menu()->sync($request->input('idMenu'));
     }
