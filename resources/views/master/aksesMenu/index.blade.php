@@ -40,7 +40,7 @@
                                                     <tr>
                                                         <td>{{ $akses->idAksesMenu }}</td>
                                                         <td class="text-start">
-                                                            @foreach ($menu as $item)
+                                                            @foreach ($akses->Menu as $item)
                                                                 {{ $item->namaMenu }} <br>
                                                             @endforeach
                                                         </td>
