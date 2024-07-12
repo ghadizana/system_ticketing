@@ -28,20 +28,62 @@
                                             @method('PUT')
                                             <div class="row">
                                                 <div class="mb-3 col-md-6">
-                                                    <label for="idAksesMenu" class="form-label">Id Akses Menu</label>
-                                                    <input class="form-control" id="idAksesMenu" name="idAksesMenu"
-                                                        value="{{ $aksesMenu->idAksesMenu }}" readonly />
-                                                </div>
-                                                <div class="mb-3 col-md-6">
-                                                    <label for="namaMenu" class="form-label">Nama Menu</label>
-                                                    <select name="idMenu" id="idMenu" class="form-control" required>
-                                                        @foreach ($menu as $item)
-                                                            <option value="{{ $item->idMenu }}"
-                                                                {{ old('idMenu') == $item->idMenu ? 'selected' : '' }}>
-                                                                {{ $item->namaMenu }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
+                                                    <label for="idMenu" class="form-label">Nama Menu</label>
+                                                    <div class="border p-2" id="menuDropdown"
+                                                        style="background: white; border-radius: .25rem;">
+                                                        <ul class="list-unstyled">
+                                                            @foreach ($menu as $item)
+                                                                <li>
+                                                                    <label class="d-flex align-items-center">
+                                                                        <input type="checkbox" name="idMenu[]"
+                                                                            value="{{ $item->idMenu }}"
+                                                                            class="menu-checkbox me-2"
+                                                                            data-bs-toggle="collapse"
+                                                                            data-bs-target="#collapse{{ $item->idMenu }}"
+                                                                            {{ in_array($item->idMenu, $aksesMenu->Menu->pluck('idMenu')->toArray()) ? 'checked' : '' }}>
+                                                                        {{ $item->namaMenu }}
+                                                                        <i class="bx bx-chevron-down ms-auto chevron-icon"
+                                                                            data-bs-toggle="collapse"
+                                                                            data-bs-target="#collapse{{ $item->idMenu }}"></i>
+                                                                    </label>
+                                                                    <div class="collapse" id="collapse{{ $item->idMenu }}">
+                                                                        <ul class="list-unstyled ms-4">
+                                                                            <li>
+                                                                                <label>
+                                                                                    <input type="checkbox"
+                                                                                        class="form-check-input"
+                                                                                        name="subMenu[{{ $item->idMenu }}][]"
+                                                                                        value="create"
+                                                                                        {{ $aksesMenu->Menu->find($item->idMenu)->pivot->create ? 'checked' : '' }}>
+                                                                                    Create
+                                                                                </label>
+                                                                            </li>
+                                                                            <li>
+                                                                                <label>
+                                                                                    <input type="checkbox"
+                                                                                        class="form-check-input"
+                                                                                        name="subMenu[{{ $item->idMenu }}][]"
+                                                                                        value="update"
+                                                                                        {{ $aksesMenu->Menu->find($item->idMenu)->pivot->update ? 'checked' : '' }}>
+                                                                                    Update
+                                                                                </label>
+                                                                            </li>
+                                                                            <li>
+                                                                                <label>
+                                                                                    <input type="checkbox"
+                                                                                        class="form-check-input"
+                                                                                        name="subMenu[{{ $item->idMenu }}][]"
+                                                                                        value="delete"
+                                                                                        {{ $aksesMenu->Menu->find($item->idMenu)->pivot->delete ? 'checked' : '' }}>
+                                                                                    Delete
+                                                                                </label>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="deskripsi" class="form-label">Deskripsi</label>

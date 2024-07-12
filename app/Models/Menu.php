@@ -14,6 +14,6 @@ class Menu extends Model
     protected $fillable = ['namaMenu', 'baseUrl', 'label'];
 
     public function AksesMenus() {
-        return $this->belongsToMany(AksesMenu::class, 'akses_menus_menus', 'idMenu', 'idAksesMenu');
+        return $this->belongsToMany(AksesMenu::class, 'akses_menus_menus', 'idMenu', 'idAksesMenu')->withPivot('create', 'read', 'update', 'delete');
     }
 }

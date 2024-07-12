@@ -17,6 +17,6 @@ class AksesMenu extends Model
     ];
 
     public function Menu() {
-        return $this->belongsToMany(Menu::class, 'akses_menus_menus', 'idAksesMenu', 'idMenu');
+        return $this->belongsToMany(Menu::class, 'akses_menus_menus', 'idAksesMenu', 'idMenu')->withPivot('create', 'read', 'update', 'delete');
     }
 }
