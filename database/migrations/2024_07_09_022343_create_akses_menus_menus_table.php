@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('akses_menus_menus', function (Blueprint $table) {
             $table->unsignedBigInteger('idAksesMenu');
             $table->unsignedBigInteger('idMenu');
+            $table->boolean('create')->default(false);
+            $table->boolean('read')->default(true);
+            $table->boolean('update')->default(false);
+            $table->boolean('delete')->default(false);
 
             $table->foreign('idAksesMenu')->references('idAksesMenu')->on('akses_menus')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('idMenu')->references('idMenu')->on('menus')->onUpdate('cascade')->onDelete('cascade');
