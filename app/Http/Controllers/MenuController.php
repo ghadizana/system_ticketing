@@ -13,6 +13,11 @@ class MenuController extends Controller
         return view('master.menu.index', compact('menu'));
     }
 
+    public function showByLink($slug) {
+        $menu = Menu::where('baseUrl', $slug)->firstOrFail();
+        return view('master.menu.index', compact('menu'));
+    }
+
     public function store(Request $request) {
         $validator = Validator::make($request->all(), [
             'namaMenu' => 'required|unique:menus,namaMenu',

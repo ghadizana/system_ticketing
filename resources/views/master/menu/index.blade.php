@@ -42,7 +42,7 @@
                                                     <tr>
                                                         <td>{{ $item->idMenu }}</td>
                                                         <td>{{ $item->namaMenu }}</td>
-                                                        <td>{{ $item->baseUrl }}</td>
+                                                        <td><a href="{{ route('link.show', ['slug' => $item->baseUrl]) }}">{{ $item->baseUrl }}</a></td>
                                                         <td>
                                                             @if ($item->status === 1)
                                                                 <span class="badge bg-label-primary me-1">Aktif</span>

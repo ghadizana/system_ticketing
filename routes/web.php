@@ -6,6 +6,7 @@ use App\Http\Controllers\GrupUserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Middleware\Role;
 use App\Models\Menu;
 use Illuminate\Support\Facades\Route;
 
@@ -20,10 +21,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashbord.index');
-})->name('dashboard');
-
 // Register Route
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
 
@@ -31,7 +28,7 @@ Route::get('/register', [RegisterController::class, 'register'])->name('register
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'actionLogin'])->name('actionLogin');
 
-// Master User Route
+// Master User Route'
 Route::get('/master-user', [DataUserController::class, 'index'])->name('masterUser');
 Route::get('/master-user-detail/{userId}', [DataUserController::class, 'show'])->name('detailUser');
 Route::get('/master-user-edit/{userId}', [DataUserController::class, 'edit'])->name('editUser');
@@ -61,3 +58,6 @@ Route::get('/menu-edit/{idAksesMenu}', [MenuController::class, 'edit'])->name('e
 Route::post('/menu', [MenuController::class, 'store'])->name('addMenu');
 Route::put('/menu-edit/{idMenu}', [MenuController::class, 'update'])->name('updateMenu');
 Route::delete('/menu/{idMenu}', [MenuController::class, 'destroy'])->name('deleteMenu');
+
+// Base URL
+Route::get('{slug}', [MenuController::class, 'showByLink'])->name('link.show');
