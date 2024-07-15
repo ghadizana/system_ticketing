@@ -63,6 +63,13 @@
                                                     <li>
                                                         <label>
                                                             <input type="checkbox" class="form-check-input"
+                                                                   name="subMenu[{{ $item->idMenu }}][]" value="read">
+                                                            Read
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" class="form-check-input"
                                                                    name="subMenu[{{ $item->idMenu }}][]" value="update">
                                                             Update
                                                         </label>
