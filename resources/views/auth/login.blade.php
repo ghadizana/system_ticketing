@@ -110,12 +110,20 @@
                         <h4 class="mb-2">Selamat Datang! 👋</h4>
                         <p class="mb-4">Silakan Masuk ke Akun Anda</p>
 
+                        @if (session()->has('loginError'))
+                            <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                                {{ session('loginError') }}
+                            </div>
+                        @endif
                         <form class="mb-3" action="{{ route('actionLogin') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="text" class="form-control" id="email" name="email"
-                                    placeholder="Masukkan email anda" required />
+                                    placeholder="Masukkan email anda" value="{{ old('email') }}" required />
+                                @error('email')
+                                    <div class="text text-danger text-start">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <div class="d-flex justify-content-between">
