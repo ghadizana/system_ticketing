@@ -43,42 +43,34 @@
                                 <ul class="list-unstyled" style="max-height: 200px; overflow-y: auto;">
                                     @foreach ($menu as $item)
                                         <li>
-                                            <label>
+                                            <label class="d-flex align-items-center">
                                                 <input type="checkbox" name="idMenu[]" value="{{ $item->idMenu }}"
-                                                    class="menu-checkbox" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapse{{ $item->idMenu }}"class="menu-checkbox">
+                                                       class="menu-checkbox me-2" data-bs-toggle="collapse"
+                                                       data-bs-target="#collapse{{ $item->idMenu }}">
                                                 {{ $item->namaMenu }}
-                                                <i class="bx bx-chevron-down me-2 chevron-icon"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#collapse{{ $item->idMenu }}"></i>
+                                                <i class="bx bx-chevron-down ms-auto chevron-icon" data-bs-toggle="collapse"
+                                                   data-bs-target="#collapse{{ $item->idMenu }}"></i>
                                             </label>
                                             <div class="collapse" id="collapse{{ $item->idMenu }}">
-                                                <ul class="list-unstyled ms-3">
+                                                <ul class="list-unstyled ms-4">
                                                     <li>
                                                         <label>
-                                                            <input type="checkbox"
-                                                                name="subMenu[{{ $item->idMenu }}][]" value="create">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                   name="subMenu[{{ $item->idMenu }}][]" value="create">
                                                             Create
                                                         </label>
                                                     </li>
                                                     <li>
                                                         <label>
-                                                            <input type="checkbox"
-                                                                name="subMenu[{{ $item->idMenu }}][]" value="read">
-                                                            Read
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label>
-                                                            <input type="checkbox"
-                                                                name="subMenu[{{ $item->idMenu }}][]" value="update">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                   name="subMenu[{{ $item->idMenu }}][]" value="update">
                                                             Update
                                                         </label>
                                                     </li>
                                                     <li>
                                                         <label>
-                                                            <input type="checkbox"
-                                                                name="subMenu[{{ $item->idMenu }}][]" value="delete">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                   name="subMenu[{{ $item->idMenu }}][]" value="delete">
                                                             Delete
                                                         </label>
                                                     </li>
@@ -93,10 +85,25 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan perubahan</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-success">Simpan perubahan</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('.chevron-icon').forEach((icon) => {
+            icon.addEventListener('click', (e) => {
+                e.stopPropagation();  // Prevent the checkbox from being toggled
+                const target = document.querySelector(icon.getAttribute('data-bs-target'));
+                target.classList.toggle('show');
+            });
+        });
+    });
+</script>
+@endpush
