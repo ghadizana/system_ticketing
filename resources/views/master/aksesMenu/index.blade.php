@@ -30,6 +30,7 @@
                                             <thead class="table-dark">
                                                 <tr>
                                                     <th>Id Akses Menu</th>
+                                                    <th>Nama Menu</th>
                                                     <th>Deskripsi</th>
                                                     <th>Label</th>
                                                     <th>Aksi</th>
@@ -44,6 +45,7 @@
                                                                 {{ $item->namaMenu }} <br>
                                                             @endforeach
                                                         </td>
+                                                        <td class="text-start">{{ $akses->deskripsi }}</td>
                                                         <td class="text-start">{{ $akses->label }}</td>
                                                         <td>
                                                             <div class="dropdown">

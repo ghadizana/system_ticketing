@@ -56,31 +56,21 @@ class AksesMenuController extends Controller
 
     public function edit($idAksesMenu)
     {
-        $aksesMenu = AksesMenu::find($idAksesMenu);
+        $aksesMenu = AksesMenu::with('Menu')->findOrFail($idAksesMenu);
         $menu = Menu::all();
         return view('master.aksesMenu.edit', compact('aksesMenu', 'idAksesMenu', 'menu'));
     }
 
-    // public function update($idAksesMenu, Request $request) {
-    //     AksesMenu::where('idAksesMenu', $idAksesMenu)->update([
-    //         'idMenu' => $request->input('idMenu'),
-    //         'deskripsi' => $request->input('deskripsi'),
-    //         'label' => $request->input('label'),
-    //     ]);
-
-    //     return redirect()->route('aksesMenu');
-    // }
-
     public function update(Request $request, $id)
     {
-        try {
-            // Validasi input jika diperlukan
-            $request->validate([
-                'idMenu' => 'required|array',
-                'deskripsi' => 'required|string',
-                'label' => 'required|string',
-            ]);
+        $validator = Validator::make($request->all(), [
+            'deskripsi' => 'required|string',
+            'label' => 'required|string',
+            'idMenu' => 'required|array',
+            'idMenu.*' => 'exists:menu,idMenu'
+        ]);
 
+        try {
             // Temukan AksesMenu yang akan diperbarui
             $aksesMenu = AksesMenu::findOrFail($id);
 
