@@ -12,12 +12,15 @@ class GrupUser extends Model
     protected $primaryKey = 'idGrupUser';
 
     protected $fillable = [
-        'idGrupUser',
         'grupUser',
         'idAksesMenu'
     ];
 
     public function AksesMenu() {
-        return $this->belongsTo(AksesMenu::class, 'idAksesMenu');
+        return $this->hasMany(AksesMenu::class, 'idAksesMenu', 'idGrupUser');
+    }
+
+    public function User() {
+        return $this->hasMany(User::class, 'idGrupUser');
     }
 }

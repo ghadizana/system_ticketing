@@ -13,15 +13,14 @@ class GrupUserController extends Controller
 {
     public function index()
     {
-        $grupUsers = GrupUser::paginate(10);
         $aksesMenu = AksesMenu::all();
+        $grupUsers = GrupUser::with('AksesMenu')->get();
         return view('master.grupUser.index', compact('grupUsers', 'aksesMenu'));
     }
 
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'idGrupUser' => 'required|unique:grup_users,idGrupUser',
             'grupUser' => 'required',
             'idAksesMenu' => 'required'
         ]);
@@ -31,7 +30,6 @@ class GrupUserController extends Controller
         }
 
         $grupUsers = GrupUser::create([
-            'idGrupUser' => $request->idGrupUser,
             'grupUser' => $request->grupUser,
             'idAksesMenu' => $request->idAksesMenu,
         ]);

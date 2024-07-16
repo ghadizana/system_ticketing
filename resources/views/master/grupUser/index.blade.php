@@ -42,7 +42,11 @@
                                                     <tr>
                                                         <td>{{ $grupUser->idGrupUser }}</td>
                                                         <td class="text-start">{{ $grupUser->grupUser }}</td>
-                                                        <td class="text-start">{{ $grupUser->idAksesMenu }}</td>
+                                                        <td class="text-start">
+                                                            @foreach ($grupUser->AksesMenu as $aksesMenu)
+                                                                {{ $aksesMenu->deskripsi }}
+                                                            @endforeach
+                                                        </td>
                                                         <td>
                                                             <div class="dropdown">
                                                                 <button type="button"

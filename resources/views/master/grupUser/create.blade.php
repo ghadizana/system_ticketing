@@ -10,14 +10,6 @@
                 <div class="modal-body">
                     <div class="row g-2 mb-2">
                         <div class="col mb-0 text-start">
-                            <label for="idGrupUser" class="form-label">Id Grup User</label>
-                            <input type="number" id="idGrupUser" class="form-control" name="idGrupUser"
-                                placeholder="Masukkan Id Grup User" required value="{{ old('idGrupUser') }}">
-                        </div>
-                        @error('idGrupUser')
-                            <div class="text text-danger text-start">{{ $message }}</div>
-                        @enderror
-                        <div class="col mb-0 text-start">
                             <label for="grupUser" class="form-label text-start">Nama Grup User</label>
                             <input type="text" id="grupUser" class="form-control" name="grupUser"
                                 placeholder="Masukkan Nama Grup User" autofocus required value="{{ old('grupUser') }}">
@@ -25,17 +17,17 @@
                         @error('grupUser')
                             <div class="text text-danger text-start">{{ $message }}</div>
                         @enderror
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="namaMenu" class="form-label text-start">Nama Akses Menu</label>
-                        <select name="idAksesMenu" id="idAksesMenu" class="form-control" required>
-                            @foreach ($aksesMenu as $item)
-                                <option value="{{ $item->idAksesMenu }}"
-                                    {{ old('idAksesMenu') == $item->idAksesMenu ? 'selected' : '' }}>
-                                    {{ $item->deskripsi }}
-                                </option>
-                            @endforeach
-                        </select>
+                        <div class="mb-3 col-md-6">
+                            <label for="namaMenu" class="form-label text-start">Nama Akses Menu</label>
+                            <select name="idAksesMenu" id="idAksesMenu" class="form-control" required>
+                                @foreach ($aksesMenu as $item)
+                                    <option value="{{ $item->idAksesMenu }}"
+                                        {{ old('idAksesMenu') == $item->idAksesMenu ? 'selected' : '' }}>
+                                        {{ $item->deskripsi }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
