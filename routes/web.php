@@ -21,43 +21,45 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Register Route
-Route::get('/register', [RegisterController::class, 'register'])->name('register');
-
-// Login Route
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'actionLogin'])->name('actionLogin');
 
-// Master User Route'
+Route::get('/register', [RegisterController::class, 'register'])->name('register');
+
+Route::controller(DataUserController::class)->group(function () {
+    Route::get('/master-user-detail/{userId}', 'show')->name('detailUser');
+    Route::get('/master-user-edit/{userId}', 'edit')->name('editUser');
+
+    Route::post('/master-user', 'store')->name('addUser');
+    Route::put('/master-user-update/{userId}', 'update')->name('updateUser');
+    Route::delete('/master-user/{userId}', 'destroy')->name('deleteUser');
+});
+
 Route::get('/master-user', [DataUserController::class, 'index'])->name('masterUser');
-Route::get('/master-user-detail/{userId}', [DataUserController::class, 'show'])->name('detailUser');
-Route::get('/master-user-edit/{userId}', [DataUserController::class, 'edit'])->name('editUser');
 
-Route::post('/master-user', [DataUserController::class, 'store'])->name('addUser');
-Route::put('/master-user-update/{userId}', [DataUserController::class, 'update'])->name('updateUser');
-Route::delete('/master-user/{userId}', [DataUserController::class, 'destroy'])->name('deleteUser');
+Route::controller(GrupUserController::class)->group(function () {
+    Route::get('/grup-user', 'index')->name('grupUser');
+    Route::get('/grup-user-edit/{idGrupUser}', 'edit')->name('editGrupUser');
 
-// Grup User Route
-Route::get('/grup-user', [GrupUserController::class, 'index'])->name('grupUser');
-Route::get('/grup-user-edit/{idGrupUser}', [GrupUserController::class, 'edit'])->name('editGrupUser');
+    Route::post('/grup-user', 'store')->name('addGrupUser');
+    Route::put('/grup-user-update/{idGrupUser}', 'update')->name('updateGrupUser');
+    Route::delete('/grup-user/{idGrupUser}', 'destroy')->name('deleteGrupUser');
+});
 
-Route::post('/grup-user', [GrupUserController::class, 'store'])->name('addGrupUser');
-Route::put('/grup-user-update/{idGrupUser}', [GrupUserController::class, 'update'])->name('updateGrupUser');
-Route::delete('/grup-user/{idGrupUser}', [GrupUserController::class, 'destroy'])->name('deleteGrupUser');
+Route::controller(AksesMenuController::class)->group(function () {
+    Route::get('/akses-menu', 'index')->name('aksesMenu');
+    Route::get('/akses-menu-edit/{idAksesMenu}', 'edit')->name('editAksesMenu');
+    Route::post('/akses-menu', 'store')->name('addAksesMenu');
+    Route::delete('/akses-menu/{idAksesMenu}', 'destroy')->name('deleteAksesMenu');
+    Route::put('/akses-menu-edit/{idAksesMenu}', 'update')->name('updateAksesMenu');
+});
 
-// Akses Menu Route
-Route::get('/akses-menu', [AksesMenuController::class, 'index'])->name('aksesMenu');
-Route::get('/akses-menu-edit/{idAksesMenu}', [AksesMenuController::class, 'edit'])->name('editAksesMenu');
-Route::post('/akses-menu', [AksesMenuController::class, 'store'])->name('addAksesMenu');
-Route::delete('/akses-menu/{idAksesMenu}', [AksesMenuController::class, 'destroy'])->name('deleteAksesMenu');
-Route::put('/akses-menu-edit/{idAksesMenu}', [AksesMenuController::class, 'update'])->name('updateAksesMenu');
+Route::controller(MenuController::class)->group(function () {
+    Route::get('/menu', 'index')->name('menu');
+    Route::get('/menu-edit/{idAksesMenu}', 'edit')->name('editMenu');
+    Route::post('/menu', 'store')->name('addMenu');
+    Route::put('/menu-edit/{idMenu}', 'update')->name('updateMenu');
+    Route::delete('/menu/{idMenu}', 'destroy')->name('deleteMenu');
 
-// Menu Route
-Route::get('/menu', [MenuController::class, 'index'])->name('menu');
-Route::get('/menu-edit/{idAksesMenu}', [MenuController::class, 'edit'])->name('editMenu');
-Route::post('/menu', [MenuController::class, 'store'])->name('addMenu');
-Route::put('/menu-edit/{idMenu}', [MenuController::class, 'update'])->name('updateMenu');
-Route::delete('/menu/{idMenu}', [MenuController::class, 'destroy'])->name('deleteMenu');
-
-// Base URL
-Route::get('{slug}', [MenuController::class, 'showByLink'])->name('link.show');
+    Route::get('{slug}', 'showByLink')->name('link.show');
+});
