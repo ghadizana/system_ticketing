@@ -20,6 +20,10 @@
                                 {{-- Navbar Tambah Pengguna --}}
                                 <div class="container d-flex justify-content-between align-items-center">
                                     <h4 class="py-3 mb-0">Detail Pengguna</h4>
+                                    <form action="{{ url('logout') }}" method="POST">
+                                        @csrf
+                                        <button class="btn btn-secondary" type="submit">Logout</button>
+                                    </form>
                                     @include('master.masterUser.register')
                                     <a class="btn btn-primary" type="button" data-bs-toggle="modal"
                                         data-bs-target="#addUser" href="#">Tambah Akun Pengguna</a>

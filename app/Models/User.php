@@ -32,6 +32,8 @@ class User extends Authenticatable
         'status',
     ];
 
+    protected $primaryKey = 'userId';
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -51,7 +53,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function grupUser(): BelongsTo {
-        return $this->belongsTo(GrupUser::class, 'idGrupUser', 'idGrupUser');
+    public function grupUser()
+    {
+        return $this->belongsTo(GrupUser::class, 'idGrupUser', );
+    }
+
+    public function hasAccess($menu, $action)
+    {
+        $grupUser = $this->grupUser;
+
+        if ($grupUser) {
+            foreach ($grupUser->akses as $akses) {
+                if ($akses->menus()->where('name', $menu)->wherePivot('action', $action)->exists()) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }
